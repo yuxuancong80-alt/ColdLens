@@ -487,3 +487,4 @@ ColdLens 是一个面向短视频推荐场景的多模态冷启动研究项目�
 - 聚合 Validation 与 Frozen Test 指标继续来自原离线实验；页面明确把它们和合成机制排序分开，不新增、不重跑 Test。
 - 已加入公开版数据边界测试、96 词覆盖测试、确定性排序测试和本地完整版可选回归测试，4 项均通过；生产构建中确认不存在 `demo-data.json`。
 - 已生成并检查项目专属分享预览图 `demo/public-safe/og.png`，页面元数据按请求域名输出绝对图片地址。
+- 用户已完成页面观感验收并明确授权公开。安全版已发布至 `https://coldlens-yuxuan.reamurrayboz.chatgpt.site`，Sites 访问模式核验为 `public`，未登录 HTTP 请求返回 200；GitHub README 已补充在线体验入口。

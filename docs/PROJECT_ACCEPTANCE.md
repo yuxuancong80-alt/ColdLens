@@ -70,8 +70,9 @@ powershell -ExecutionPolicy Bypass -File scripts\start_demo.ps1 -Regenerate
 
 1. **代码许可证**：用户已确认 MIT，根目录 `LICENSE` 仅覆盖项目代码；MicroLens 数据与媒体继续遵守原始条款。
 2. **公开仓库**：已创建 `https://github.com/yuxuancong80-alt/ColdLens`，默认分支为 `main`；原始数据、媒体、模型产物和本地 Demo 生成数据均未上传。
-3. **数据条款复核**：原始数据与媒体不上传，但公开 Demo 截图、标题摘录或衍生结果前仍应再次核对 MicroLens 使用条款。
-4. **视觉验收**：页面已构建并通过结构测试；若作为正式投递链接，应由用户在常用屏幕和浏览器上确认观感与文案。
+3. **数据条款复核**：已完成；真实标题和派生向量仅留在本地，公开 Demo 使用冻结聚合指标与完全自写的合成内容。
+4. **视觉验收**：用户已在常用浏览器中查看并确认当前版本可以公开展示。
+5. **公开 Demo**：已发布至 `https://coldlens-yuxuan.reamurrayboz.chatgpt.site`，访问模式为 public；未登录 HTTP 检查返回 200。
 
 数据条款复核已于 2026-08-17 完成。结论是：当前真实标题驱动的本地 Demo 不直接部署公网；公开版只使用不可反推单条记录的冻结聚合指标与完全自写的合成示例，并明确区分实验结果和机制演示。完整依据与发布清单见 [公开 Demo 数据边界](PUBLIC_DEMO_PROTOCOL.md)。
 

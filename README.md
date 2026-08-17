@@ -4,6 +4,8 @@
 
 ![ColdLens 最终测试对比](docs/assets/final_test_metrics.svg)
 
+**在线体验：** [ColdLens 冷启动推荐实验室](https://coldlens-yuxuan.reamurrayboz.chatgpt.site)（安全公开版；交互内容均为合成数据）
+
 ## 三分钟结论
 
 ColdLens 不是一个“多模态一定更好”的演示项目，而是一次完整的产品—模型决策实验：先定义冷启动与成功门槛，再用 Validation 选择方案，最后只运行一次冻结 Test。
