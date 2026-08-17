@@ -73,6 +73,7 @@ powershell -ExecutionPolicy Bypass -File scripts\start_demo.ps1 -Regenerate
 3. **数据条款复核**：已完成；真实标题和派生向量仅留在本地，公开 Demo 使用冻结聚合指标与完全自写的合成内容。
 4. **视觉验收**：用户已在常用浏览器中查看并确认当前版本可以公开展示。
 5. **公开 Demo**：已发布至 `https://coldlens-yuxuan.reamurrayboz.chatgpt.site`，访问模式为 public；未登录 HTTP 检查返回 200。
+6. **招聘方导览**：公开首页已补充 60 秒项目摘要、本人角色与 AI 协作边界、核心决策卡片，以及 Demo/GitHub 双入口。
 
 数据条款复核已于 2026-08-17 完成。结论是：当前真实标题驱动的本地 Demo 不直接部署公网；公开版只使用不可反推单条记录的冻结聚合指标与完全自写的合成示例，并明确区分实验结果和机制演示。完整依据与发布清单见 [公开 Demo 数据边界](PUBLIC_DEMO_PROTOCOL.md)。
 

@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
   const title = "ColdLens · 冷启动推荐实验室";
-  const description = "用冻结聚合证据与完全自写的合成样例解释短视频 Text-only 冷启动推荐。";
+  const description = "AI 产品经理求职作品：用冻结证据决定短视频冷启动模型去留，并以合成样例解释 Text-only 推荐机制。";
 
   return {
     title,

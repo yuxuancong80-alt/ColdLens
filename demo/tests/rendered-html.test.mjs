@@ -17,9 +17,14 @@ test("public build uses only the synthetic data path and keeps boundaries visibl
   ]);
 
   assert.match(layout, /ColdLens · 冷启动推荐实验室/);
-  assert.match(layout, /完全自写的合成样例/);
+  assert.match(layout, /以合成样例解释 Text-only 推荐机制/);
   assert.match(layout, /lang="zh-CN"/);
   assert.match(page, /公开安全版 · 合成机制数据/);
+  assert.match(page, /不是证明多模态更强/);
+  assert.match(page, /60 秒看懂项目/);
+  assert.match(page, /产品决策负责，AI 辅助实现/);
+  assert.match(page, /进入交互 Demo/);
+  assert.match(page, /查看 GitHub 证据链/);
   assert.match(page, /所有可交互标题、历史、目标与排序均为完全自写的合成示例/);
   assert.match(page, /创建模拟用户/);
   assert.match(page, /选择历史视频/);

@@ -502,10 +502,73 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="intro-grid">
+      <section className="recruiter-hero" aria-labelledby="portfolio-title">
+        <div className="hero-copy">
+          <p className="section-kicker">AI 产品经理求职作品 · 2026</p>
+          <h2 id="portfolio-title">
+            不是证明多模态更强，<br />而是证明什么时候该停止增加复杂度。
+          </h2>
+          <p>
+            我用 MicroLens-50K 完成了一次短视频 Item Cold-Start 决策实验：先纠正数据前提，再冻结评测门槛，最终拒绝三种未达标的融合方案，保留更轻、更稳、更容易解释的 Text-only 路线。
+          </p>
+          <div className="hero-actions">
+            <a className="primary-action" href="#interactive-demo">进入交互 Demo</a>
+            <a
+              className="secondary-action"
+              href="https://github.com/yuxuancong80-alt/ColdLens"
+              target="_blank"
+              rel="noreferrer"
+            >
+              查看 GitHub 证据链
+            </a>
+          </div>
+        </div>
+        <aside className="decision-brief" aria-label="项目最终决策">
+          <p className="section-kicker">最终产品决策</p>
+          <strong>Text-only</strong>
+          <span>标题兴趣匹配兜底</span>
+          <dl>
+            <div><dt>Text Recall@10</dt><dd>0.12551</dd></div>
+            <div><dt>Visual Recall@10</dt><dd>0.04543</dd></div>
+            <div><dt>融合进入 Test</dt><dd>0 / 3</dd></div>
+          </dl>
+          <p className="brief-boundary">这是离线排序证据，不代表 CTR、观看时长或留存提升。</p>
+        </aside>
+      </section>
+
+      <section className="case-summary" aria-labelledby="case-summary-title">
+        <div className="summary-heading">
+          <p className="section-kicker">60 秒看懂项目</p>
+          <h2 id="case-summary-title">我做了四个关键判断</h2>
+        </div>
+        <div className="case-summary-grid">
+          <article>
+            <span>01 · 问题定义</span>
+            <h3>严格模型侧 Item Cold-Start</h3>
+            <p>候选视频在训练期零交互，但不虚构“真实新发布”场景。</p>
+          </article>
+          <article>
+            <span>02 · 数据纠偏</span>
+            <h3>评论不是点击，首评不是上传</h3>
+            <p>先修正错误前提，再决定指标、切分与可以声称的结论。</p>
+          </article>
+          <article>
+            <span>03 · 方案去留</span>
+            <h3>三种融合均未通过门槛</h3>
+            <p>不因“多模态”标签改变事前规则，也不根据 Test 翻案。</p>
+          </article>
+          <article className="role-card">
+            <span>04 · 我的角色</span>
+            <h3>产品决策负责，AI 辅助实现</h3>
+            <p>我负责问题定义、数据纠偏、评测门槛、方案取舍与产品化表达；AI 辅助实验实现和结果核验。</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="intro-grid" id="interactive-demo">
         <div className="intro-copy">
-          <p className="section-kicker">可解释的冷启动推荐</p>
-          <h2>从冻结实验证据，到合成机制演示，再到方案决策。</h2>
+          <p className="section-kicker">现在动手体验</p>
+          <h2>从机制样例，到模拟兴趣，再到方案对比。</h2>
           <p>
             聚合指标来自冻结的MicroLens离线研究；所有可交互标题、历史、目标与排序均为完全自写的合成示例。
           </p>
