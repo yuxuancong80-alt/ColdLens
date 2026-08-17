@@ -59,6 +59,7 @@ def main() -> None:
         "docs/PROJECT_ACCEPTANCE.md",
         "docs/INTERVIEW_WALKTHROUGH.md",
         "docs/RESUME_PROJECT_DESCRIPTION.md",
+        "docs/PUBLIC_DEMO_PROTOCOL.md",
         "demo/package.json",
         "demo/package-lock.json",
         "demo/app/page.tsx",

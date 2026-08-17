@@ -79,8 +79,11 @@ data/ artifacts/ outputs/   本地数据与产物（被 Git 忽略）
 7. [离线评测协议](docs/EVALUATION_PROTOCOL.md)
 8. [融合实验结果](docs/LEARNED_FUSION_RESULTS.md)
 9. [最终测试结果](docs/FINAL_TEST_RESULTS.md)
+10. [公开 Demo 数据边界](docs/PUBLIC_DEMO_PROTOCOL.md)
 
 ## 本地 Demo
+
+当前含真实标题与派生向量的完整版只在本地使用，不直接部署公网。官方仓库禁止修改数据集后提供二次下载，而标题元数据与派生特征没有明确的再分发许可；因此未来公网版将只展示冻结聚合指标，并使用完全自写的合成示例解释机制。详见 [公开 Demo 数据边界](docs/PUBLIC_DEMO_PROTOCOL.md)。
 
 Demo 有三个独立模式：
 
