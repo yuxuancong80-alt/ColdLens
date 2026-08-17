@@ -122,4 +122,8 @@ python -m venv .venv
 
 Python · NumPy · PyTorch/Torchvision · TF-IDF · MobileNetV3-Small · 时间切分 · 全候选 Top-K 排序 · 可复现性校验
 
+## 许可证
+
+项目代码采用 [MIT License](LICENSE)。MicroLens 数据与媒体不包含在本许可证授权范围内，仍须遵守其原始数据条款。
+
 数据集论文：[MicroLens: Microscopic Lens for Benchmarking E-commerce Recommendations](https://arxiv.org/abs/2309.15379)。

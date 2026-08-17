@@ -466,6 +466,6 @@ ColdLens 是一个面向短视频推荐场景的多模态冷启动研究项目�
 - 已新增 `scripts/check_project_readiness.py` 与 `docs/PROJECT_ACCEPTANCE.md`；自检不训练模型，也不读取 Test 标签。
 - 自动验收通过 10 类检查：必需文件、UTF-8 JSON、25 份 Markdown 链接、Python 语法、冻结最终报告哈希、产品分析哈希、Demo 匿名边界、嵌套 Git、关键忽略规则和 5MiB 公开文件上限。
 - Demo 一键启动预检通过，Node.js 版本为 22.20.0；最终前端构建与结构测试通过。
-- 当前 `ready_for_local_use = true`；首次本地提交已获用户授权。公开发布仍未就绪，因为尚未选择代码许可证，也未授权创建公开仓库。
+- 当前 `ready_for_local_use = true`；首次本地提交已完成。用户已确认 MIT License，许可证只覆盖项目代码，不覆盖 MicroLens 数据与媒体。
 - 已新增 `.editorconfig` 与 `.gitattributes`，统一 UTF-8、换行和常用文件类型处理。
-- 用户选择跳过模拟面试，简历项目描述已完成；首次本地提交使用用户提供的Git身份。下一步只剩许可证选择和是否创建公开仓库，均需用户另行明确授权。
+- 用户选择跳过模拟面试，简历项目描述已完成；首次本地提交使用用户提供的Git身份。下一步只剩是否创建公开仓库，仍需用户另行明确授权；发布前还应复核数据条款与提交邮箱隐私。
