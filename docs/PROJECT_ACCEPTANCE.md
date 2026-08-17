@@ -69,11 +69,11 @@ powershell -ExecutionPolicy Bypass -File scripts\start_demo.ps1 -Regenerate
 以下不是实现缺陷，而是发布前状态与不能替用户做出的外部决策：
 
 1. **代码许可证**：用户已确认 MIT，根目录 `LICENSE` 仅覆盖项目代码；MicroLens 数据与媒体继续遵守原始条款。
-2. **公开仓库**：首次本地提交已完成，但没有远程仓库；不能把本地提交解释为已经公开。
+2. **公开仓库**：已创建 `https://github.com/yuxuancong80-alt/ColdLens`，默认分支为 `main`；原始数据、媒体、模型产物和本地 Demo 生成数据均未上传。
 3. **数据条款复核**：原始数据与媒体不上传，但公开 Demo 截图、标题摘录或衍生结果前仍应再次核对 MicroLens 使用条款。
 4. **视觉验收**：页面已构建并通过结构测试；若作为正式投递链接，应由用户在常用屏幕和浏览器上确认观感与文案。
 
-自动自检中的 `ready_for_public_release = true` 只表示源码包已通过本地技术检查，不代表用户已经授权上传，也不替代数据条款复核。
+自动自检中的 `ready_for_public_release = true` 表示源码包已通过本地技术检查；当前用户已另行授权公开上传，但该状态仍不替代数据条款复核。
 
 ## 5. 不建议继续追加的内容
 
