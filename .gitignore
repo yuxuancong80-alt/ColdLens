@@ -1,0 +1,30 @@
+# Local Python environment and caches
+.venv/
+.cache/
+.tmp/
+.wheels/
+
+# Local installers
+.installers/
+
+# Project data and generated artifacts
+data/
+artifacts/
+checkpoints/
+outputs/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Local secrets and machine-specific configuration
+.env
+*.local
+
+# Local demo dependencies, build output, and generated dataset excerpts
+demo/node_modules/
+demo/.next/
+demo/.vinext/
+demo/dist/
+demo/.wrangler/
+demo/public/demo-data.json

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="430" viewBox="0 0 920 430" role="img" aria-labelledby="title desc">
+  <title id="title">ColdLens frozen Test Cold metrics</title>
+  <desc id="desc">Text-only outperforms Visual-only on Recall at 10, NDCG at 10, and HitRate at 10.</desc>
+  <rect width="920" height="430" rx="18" fill="#0f172a"/>
+  <text x="52" y="55" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">冻结 Test Cold：轻量文本基线明显更强</text>
+  <text x="52" y="84" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">1,008 个完整冷候选 · 13,810 名用户 · 全候选排序</text>
+
+  <line x1="172" y1="120" x2="172" y2="350" stroke="#475569"/>
+  <line x1="172" y1="350" x2="865" y2="350" stroke="#475569"/>
+  <g fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="12">
+    <text x="164" y="370">0</text>
+    <text x="327" y="370">0.04</text>
+    <text x="496" y="370">0.08</text>
+    <text x="665" y="370">0.12</text>
+    <text x="834" y="370">0.16</text>
+  </g>
+  <g stroke="#334155" stroke-dasharray="3 5">
+    <line x1="341" y1="120" x2="341" y2="350"/>
+    <line x1="510" y1="120" x2="510" y2="350"/>
+    <line x1="679" y1="120" x2="679" y2="350"/>
+    <line x1="848" y1="120" x2="848" y2="350"/>
+  </g>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#e2e8f0">
+    <text x="52" y="154">Recall@10</text>
+    <text x="52" y="231">NDCG@10</text>
+    <text x="52" y="308">HitRate@10</text>
+  </g>
+
+  <rect x="172" y="132" width="530" height="22" rx="5" fill="#38bdf8"/>
+  <rect x="172" y="159" width="192" height="15" rx="4" fill="#a78bfa"/>
+  <text x="712" y="149" fill="#e0f2fe" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">0.12551</text>
+  <text x="374" y="172" fill="#ddd6fe" font-family="Segoe UI, Arial, sans-serif" font-size="13">0.04543</text>
+
+  <rect x="172" y="209" width="337" height="22" rx="5" fill="#38bdf8"/>
+  <rect x="172" y="236" width="118" height="15" rx="4" fill="#a78bfa"/>
+  <text x="519" y="226" fill="#e0f2fe" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">0.07969</text>
+  <text x="300" y="249" fill="#ddd6fe" font-family="Segoe UI, Arial, sans-serif" font-size="13">0.02800</text>
+
+  <rect x="172" y="286" width="643" height="22" rx="5" fill="#38bdf8"/>
+  <rect x="172" y="313" width="245" height="15" rx="4" fill="#a78bfa"/>
+  <text x="825" y="303" fill="#e0f2fe" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">0.15214</text>
+  <text x="427" y="326" fill="#ddd6fe" font-family="Segoe UI, Arial, sans-serif" font-size="13">0.05800</text>
+
+  <rect x="52" y="393" width="14" height="14" rx="3" fill="#38bdf8"/>
+  <text x="74" y="405" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="14">Text-only TF-IDF</text>
+  <rect x="245" y="393" width="14" height="14" rx="3" fill="#a78bfa"/>
+  <text x="267" y="405" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="14">Visual-only MobileNetV3-Small</text>
+</svg>

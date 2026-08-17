@@ -1,0 +1,25 @@
+{
+  "version": "split_v1",
+  "dataset": "MicroLens-50K",
+  "interaction_file": "data/raw/microlens50k/MicroLens-50k_pairs.csv",
+  "interaction_sha256": "7ff8b91bcc84f5434ac2c5be7d0b7d7730f5e84f79f9648b5ae67a7641f97bbd",
+  "title_file": "data/raw/microlens50k/MicroLens-50k_titles.csv",
+  "title_sha256": "244aad5380cbbe0fb43458cfcda5ebe820f534384602f80a64dbbcd07dd30e49",
+  "dev_train_end_ms_exclusive": 1661524096284,
+  "final_train_end_ms_exclusive": 1662252337828,
+  "cutoff_origin": "80th and 90th percentiles of all interaction timestamps, nearest-rank implementation frozen after M0",
+  "eligibility": {
+    "minimum_prior_interactions": 1,
+    "history_source": "the corresponding training window only"
+  },
+  "cold_item_rule": "an item has zero interactions before the evaluation window",
+  "candidate_rule": "all cold items first observed in the evaluation window, including items whose observed users lack eligible history",
+  "ground_truth_rule": "aggregate all cold positive items per eligible user within the evaluation window",
+  "evaluation": {
+    "ranking": "full cold candidate pool",
+    "sampled_negatives": false,
+    "k_values": [5, 10, 20, 50],
+    "metrics": ["Recall@K", "NDCG@K", "HitRate@K"],
+    "random_seed": 20260813
+  }
+}
