@@ -10,6 +10,7 @@ import {
   type SandboxPreset,
   type SimulationResult,
 } from "./simulation";
+import { PUBLIC_DEMO_DATA } from "./public-demo-data";
 
 type Recommendation = {
   rank: number;
@@ -66,7 +67,13 @@ function policyFor(historyCount: number) {
   };
 }
 
-function ExperimentRecommendations({ sample }: { sample: DemoSample }) {
+function ExperimentRecommendations({
+  sample,
+  synthetic,
+}: {
+  sample: DemoSample;
+  synthetic: boolean;
+}) {
   return (
     <ol className="recommendation-list">
       {sample.recommendations.map((item) => (
@@ -79,7 +86,7 @@ function ExperimentRecommendations({ sample }: { sample: DemoSample }) {
             <div className="title-row">
               <h3>{item.title}</h3>
               {item.is_validation_positive && (
-                <span className="hit-label">离线正例</span>
+                <span className="hit-label">{synthetic ? "假设目标" : "离线正例"}</span>
               )}
             </div>
             <div className="term-row">
@@ -334,9 +341,10 @@ function ComparisonPanel() {
 }
 
 export default function Home() {
-  const [data, setData] = useState<DemoData | null>(null);
+  const safeData = PUBLIC_DEMO_DATA as DemoData;
+  const [data, setData] = useState<DemoData | null>(safeData);
   const [error, setError] = useState("");
-  const [selectedId, setSelectedId] = useState("");
+  const [selectedId, setSelectedId] = useState(safeData.samples[0]?.id ?? "");
   const [mode, setMode] = useState<"experiment" | "simulate" | "comparison">(
     "experiment",
   );
@@ -352,6 +360,8 @@ export default function Home() {
   const [interestTermTopic, setInterestTermTopic] = useState("anime-game");
 
   useEffect(() => {
+    const useLocalData = new URLSearchParams(window.location.search).get("local") === "1";
+    if (!useLocalData) return;
     let active = true;
     fetch("/demo-data.json")
       .then((response) => {
@@ -385,6 +395,8 @@ export default function Home() {
     };
   }, []);
 
+  const isSynthetic = data?.demo === "safe_public_synthetic_v1";
+
   const sample = useMemo(
     () => data?.samples.find((item) => item.id === selectedId) ?? data?.samples[0],
     [data, selectedId],
@@ -416,8 +428,8 @@ export default function Home() {
   if (error) {
     return (
       <main className="missing-shell">
-        <p className="eyebrow">ColdLens · Local demo</p>
-        <h1>需要先生成匿名样例</h1>
+        <p className="eyebrow">ColdLens · Local full demo</p>
+        <h1>本地完整版需要先生成匿名样例</h1>
         <p>{error}</p>
         <code>.\.venv\Scripts\python.exe scripts\export_demo_data.py</code>
       </main>
@@ -428,7 +440,7 @@ export default function Home() {
     return (
       <main className="loading-shell" aria-live="polite">
         <span className="loading-dot" />
-        正在读取本地匿名样例…
+        正在准备安全演示数据…
       </main>
     );
   }
@@ -486,16 +498,16 @@ export default function Home() {
         </div>
         <div className="topbar-status">
           <span className="status-dot" />
-          Validation候选池 · Test未读取
+          {isSynthetic ? "公开安全版 · 合成机制数据" : "本地完整版 · Validation样例"}
         </div>
       </header>
 
       <section className="intro-grid">
         <div className="intro-copy">
           <p className="section-kicker">可解释的冷启动推荐</p>
-          <h2>从真实实验，到模拟兴趣，再到方案决策。</h2>
+          <h2>从冻结实验证据，到合成机制演示，再到方案决策。</h2>
           <p>
-            查看匿名Validation用户的离线结果，创建模拟画像，或用冻结证据理解为什么当前产品方案最终选择Text-only。
+            聚合指标来自冻结的MicroLens离线研究；所有可交互标题、历史、目标与排序均为完全自写的合成示例。
           </p>
         </div>
         <dl className="metric-strip" aria-label="Validation总体数据">
@@ -521,8 +533,8 @@ export default function Home() {
           className={mode === "experiment" ? "is-active" : ""}
           onClick={() => setMode("experiment")}
         >
-          <strong>实验样例</strong>
-          <span>有真实Validation正例</span>
+          <strong>{isSynthetic ? "机制样例" : "实验样例"}</strong>
+          <span>{isSynthetic ? "完全自写的合成数据" : "有真实Validation正例"}</span>
         </button>
         <button
           type="button"
@@ -547,10 +559,12 @@ export default function Home() {
       {mode === "experiment" ? (
         <>
           <p className="sample-warning">
-            8个样例按四个历史分层平衡选择：每层一个命中、一个未命中。它们用于解释模型，不代表总体命中率。
+            {isSynthetic
+              ? "8个样例的标题、历史、假设目标和排序均为合成内容，只解释推荐流程，不属于MicroLens实验结果。"
+              : "8个样例按四个历史分层平衡选择：每层一个命中、一个未命中。它们用于解释模型，不代表总体命中率。"}
           </p>
           <div className="workspace-grid">
-            <aside className="user-panel" aria-label="匿名用户样例">
+            <aside className="user-panel" aria-label={isSynthetic ? "合成用户样例" : "匿名用户样例"}>
               <div className="panel-heading">
                 <p className="section-kicker">选择样例</p>
                 <span>8 users</span>
@@ -587,20 +601,20 @@ export default function Home() {
             <section className="profile-panel">
               <div className="profile-header">
                 <div>
-                  <p className="section-kicker">匿名用户 {sample.id}</p>
-                  <h2>{sample.history_count}条训练历史</h2>
+                  <p className="section-kicker">{isSynthetic ? "合成用户" : "匿名用户"} {sample.id}</p>
+                  <h2>{sample.history_count}条{isSynthetic ? "合成历史" : "训练历史"}</h2>
                 </div>
                 <span className={`outcome-badge ${sample.sample_outcome}`}>
                   {sample.sample_outcome === "hit"
-                    ? `Top-10命中 ${hitCount} 条`
-                    : "Top-10未命中"}
+                    ? `${isSynthetic ? "假设目标匹配" : "Top-10命中"} ${hitCount} 条`
+                    : isSynthetic ? "假设目标未匹配" : "Top-10未命中"}
                 </span>
               </div>
 
               <div className="context-grid">
                 <article className="context-block">
                   <div className="block-heading">
-                    <h3>最近历史</h3>
+                    <h3>{isSynthetic ? "合成历史" : "最近历史"}</h3>
                     <span>最多展示6条</span>
                   </div>
                   <ol className="history-list">
@@ -612,8 +626,8 @@ export default function Home() {
 
                 <article className="context-block positive-block">
                   <div className="block-heading">
-                    <h3>Validation正例</h3>
-                    <span>真实公开评论行为</span>
+                    <h3>{isSynthetic ? "假设目标" : "Validation正例"}</h3>
+                    <span>{isSynthetic ? "非真实用户行为" : "真实公开评论行为"}</span>
                   </div>
                   <ul className="positive-list">
                     {sample.validation_positive_titles.map((title, index) => (
@@ -626,11 +640,11 @@ export default function Home() {
               <div className="recommendation-heading">
                 <div>
                   <p className="section-kicker">Text-only TF-IDF</p>
-                  <h2>完整冷候选池中的Top-10</h2>
+                  <h2>{isSynthetic ? `${data.sandbox.candidate_items}个合成候选中的Top-10` : "完整冷候选池中的Top-10"}</h2>
                 </div>
                 <p>分数是余弦相似度，不是概率</p>
               </div>
-              <ExperimentRecommendations sample={sample} />
+              <ExperimentRecommendations sample={sample} synthetic={isSynthetic} />
             </section>
 
             <aside className="decision-panel">
@@ -646,9 +660,9 @@ export default function Home() {
                 <strong>{sample.history_bucket}条历史</strong>
               </div>
               <div className="decision-rule">
-                <span>离线结果</span>
+                <span>{isSynthetic ? "机制结果" : "离线结果"}</span>
                 <strong>
-                  {sample.sample_outcome === "hit" ? "至少命中1条" : "Top-10未命中"}
+                  {sample.sample_outcome === "hit" ? (isSynthetic ? "匹配假设目标" : "至少命中1条") : (isSynthetic ? "未匹配假设目标" : "Top-10未命中")}
                 </strong>
               </div>
               <div className="decision-rule">
@@ -658,7 +672,7 @@ export default function Home() {
 
               <div className="boundary-note">
                 <strong>不要过度解释</strong>
-                <p>公开评论不是曝光、点击或观看标签；一个样例命中也不等于线上业务提升。</p>
+                <p>{isSynthetic ? "合成样例没有真实用户和效果标签；这里只能说明机制如何工作。" : "公开评论不是曝光、点击或观看标签；一个样例命中也不等于线上业务提升。"}</p>
               </div>
             </aside>
           </div>
@@ -666,7 +680,9 @@ export default function Home() {
       ) : mode === "simulate" ? (
         <>
           <p className="sample-warning simulation-warning">
-            模拟用户没有未来真实互动标签，因此这里只生成推荐和解释，不计算命中率。历史目录是固定演示样本，不代表真实内容分布。
+            {isSynthetic
+              ? `这里的${data.sandbox.history_catalog.length}条历史和${data.sandbox.candidate_items}个候选均为完全自写的合成内容；只生成推荐和解释，不计算真实命中率。`
+              : "模拟用户没有未来真实互动标签，因此这里只生成推荐和解释，不计算命中率。历史目录是固定演示样本，不代表真实内容分布。"}
           </p>
           <div className="simulation-grid">
             <section className="profile-panel simulation-panel">
@@ -865,7 +881,7 @@ export default function Home() {
               </div>
               <div className="decision-rule">
                 <span>候选范围</span>
-                <strong>完整1,305个冷视频</strong>
+                <strong>{isSynthetic ? `${data.sandbox.candidate_items}个合成候选` : "完整1,305个冷视频"}</strong>
               </div>
               <div className="decision-rule">
                 <span>模型状态</span>
@@ -887,8 +903,8 @@ export default function Home() {
       )}
 
       <footer>
-        <p>Model-side Item Cold-Start · Validation Cold · Full candidate ranking</p>
-        <p>模型与最终Test已锁定；模拟模式不写入实验结果。</p>
+        <p>Model-side Item Cold-Start · Frozen aggregate evidence</p>
+        <p>{isSynthetic ? "交互内容全部为合成数据；模型与最终Test保持锁定。" : "模型与最终Test已锁定；模拟模式不写入实验结果。"}</p>
       </footer>
     </main>
   );

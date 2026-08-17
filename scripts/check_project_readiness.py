@@ -63,6 +63,8 @@ def main() -> None:
         "demo/package.json",
         "demo/package-lock.json",
         "demo/app/page.tsx",
+        "demo/app/public-demo-data.ts",
+        "demo/public-safe/og.png",
         "scripts/export_demo_data.py",
         "scripts/start_demo.ps1",
     ]
@@ -183,6 +185,20 @@ def main() -> None:
     else:
         warnings.append("Demo data is absent; run scripts/export_demo_data.py locally")
 
+    vite_config = (ROOT / "demo" / "vite.config.ts").read_text(encoding="utf-8")
+    public_data_source = (ROOT / "demo" / "app" / "public-demo-data.ts").read_text(
+        encoding="utf-8"
+    )
+    if (
+        'command === "serve" ? "public" : "public-safe"' not in vite_config
+        or 'demo: "safe_public_synthetic_v1"' not in public_data_source
+        or "1_305" not in public_data_source
+        or "0.12797" not in public_data_source
+    ):
+        failures.append("Safe public-demo build boundary is missing or changed")
+    else:
+        passed.append("Production build is isolated from local real-title demo data")
+
     nested_git = [
         path for path in ROOT.rglob(".git") if path.resolve() != (ROOT / ".git").resolve()
     ]
@@ -216,6 +232,14 @@ def main() -> None:
             failures.append(f"Critical local paths are not ignored: {missing_ignores}")
         else:
             passed.append("Data, artifacts, outputs, environments, and demo samples are ignored")
+
+        tracked_demo_data = subprocess.run(
+            [git, "ls-files", "--error-unmatch", "demo/public/demo-data.json"],
+            cwd=ROOT,
+            capture_output=True,
+        )
+        if tracked_demo_data.returncode == 0:
+            failures.append("Local real-title demo data is tracked by Git")
 
         candidates_raw = subprocess.check_output(
             [git, "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
